@@ -77,10 +77,11 @@ requestRouter.post(
       }
 
       const connectionRequest = await ConnectionRequest.findOne({
-        _id: requestId,
+        fromUserId: requestId,
         toUserId: loggedInUser._id,
         status: "interested",
       });
+      console.log("connectionRequest: ", connectionRequest);
 
       if (!connectionRequest) {
         return res.status(400).send("Connection request not found");
